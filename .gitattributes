@@ -1,0 +1,14 @@
+# Deterministic text across Windows, Linux and CI.
+* text=auto eol=lf
+
+# Windows launch scripts keep CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binaries are never line-ending normalized.
+*.jar binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.jks binary
+*.keystore binary

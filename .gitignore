@@ -1,0 +1,19 @@
+# Gradle and Kotlin build state.
+.gradle/
+.kotlin/
+build/
+
+# Machine-local: holds this machine's SDK path.
+local.properties
+
+# Android Studio.
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Signing material never enters the repository.
+*.jks
+*.keystore
+keystore.properties
