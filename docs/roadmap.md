@@ -22,19 +22,21 @@ tienen que hablar el mismo idioma. Ese idioma es el contrato copiado en `contrac
 | Hito | Qué podés hacer con el teléfono | Tareas | Del lado del servidor |
 | --- | --- | --- | --- |
 | **M0 — Entorno** | Compilar el proyecto | [A2.0], cerrada 2026-09-13 | — |
-| **M1 — Aparear y leer** | Aparear por QR y ver tu catálogo sin conexión | [A2.1], [A3.1] | Hecho, salvo la pantalla del QR y los vectores del pin ([X1.1]) |
-| **M2 — Editar** | Marcar vistas, puntuar y escribir reviews sin red; resolver conflictos | [A2.2] | Hecho |
-| **M3 — Alta sin conexión** | Guardar películas en cualquier lado | [A2.3], [A3.2] | Hecho, salvo los vectores de normalización ([X1.2]) |
-| **M4 — Charadas** | Jugar con el mismo mazo en varios teléfonos, sin red | [A2.4], [A3.3] | Hecho |
-| **M5 — Imágenes** | Miniaturas locales y portada en segundo plano | [A2.5] | — |
-| **M6 — Lo que viaja** | Colecciones seguidas, disponibilidad y puntajes | [A2.6] | Hecho |
-| **M7 — Buscar bien sin conexión** | Buscar en tu réplica con un ranking medido | [A3.4] | El corpus dorado ya existe |
+| **M1 — Sincronización probada** | Todavía nada en la mano: saber que la fusión es correcta en cada caso antes de construir pantallas | [A5] | El `PATCH` personal no tiene precondición; [X2] si la matriz lo confirma |
+| **M2 — Aparear y leer** | Aparear por QR y ver tu catálogo sin conexión | [A2.1], [A3.1] | Hecho, salvo la pantalla del QR y los vectores del pin ([X1.1]) |
+| **M3 — Editar** | Marcar vistas, puntuar y escribir reviews sin red; resolver conflictos | [A2.2] | Lo que salga de [A5] |
+| **M4 — Alta sin conexión** | Guardar películas en cualquier lado | [A2.3], [A3.2] | Hecho, salvo los vectores de normalización ([X1.2]) |
+| **M5 — Charadas** | Jugar con el mismo mazo en varios teléfonos, sin red | [A2.4], [A3.3] | Hecho |
+| **M6 — Imágenes** | Miniaturas locales y portada en segundo plano | [A2.5] | — |
+| **M7 — Lo que viaja** | Colecciones seguidas, disponibilidad y puntajes | [A2.6] | Hecho |
+| **M8 — Buscar bien sin conexión** | Buscar en tu réplica con un ranking medido | [A3.4] | El corpus dorado ya existe |
 
 El orden sigue al caso de uso que manda —guardar películas sin estar en casa— y es el que
-fijó el owner para [A2]. La búsqueda sin conexión va al final como ranking medido, pero
-desde M1 hay un filtro simple por título.
+fijó el owner para [A2], con un cambio del 2026-09-13: **la sincronización se prueba
+primero**, porque es lo que puede obligar a cambiar el contrato con el servidor. La búsqueda
+sin conexión va al final como ranking medido, pero desde M2 hay un filtro simple por título.
 
-**v0.1.0** se publica al cerrar M1: es la primera versión que sirve para algo en la mano.
+**v0.1.0** se publica al cerrar M2: es la primera versión que sirve para algo en la mano.
 
 ## Decisiones que rigen
 
@@ -51,8 +53,11 @@ Las fuentes están en el repositorio del servidor, salvo las marcadas como de es
 | 2026-09-09 | En la red de casa, HTTPS en el propio servidor con certificado autofirmado; la huella SPKI viaja en el QR | `docs/deployment.md`, "HTTPS en la red local, sin dominio" |
 | 2026-09-12 | Las claves de charadas viajan tal como las calcula el servidor, no como ids opacos | `docs/briefs/charades-v1.md` |
 | 2026-09-13 | `compileSdk` 36 hasta instalar la plataforma 37 | `gradle/libs.versions.toml` (este repo) |
+| 2026-09-13 | Al desaparear, los datos del teléfono persisten | Owner; el detalle, en [A5.1] |
+| 2026-09-13 | La sincronización se prueba antes de construir pantallas | Owner; [A5] |
+| 2026-09-13 | Licencia GPL-3.0; remoto `pasaporteN25/MovieCacheAndroid` | Owner |
 
 ## Abierto
 
-Las cuatro decisiones del owner que lista `tareas.md`: qué pasa con los datos al desaparear,
-PIN o biometría propios, licencia y repositorio remoto.
+PIN o biometría propios, además de la pantalla de bloqueo. Y dos que van a salir de [A5]: si
+los datos siguen editables con el teléfono desapareado, y cómo ve la persona un conflicto.

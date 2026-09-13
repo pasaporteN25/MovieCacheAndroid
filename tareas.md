@@ -21,14 +21,19 @@ número de allá, como [X1.1].
 
 | Orden | Tarea | Resultado esperado | Depende de |
 | --- | --- | --- | --- |
-| 1 | [A2.1] | Aparear y ver el catálogo real sin conexión | [A3.1]; decisión de desapareo (owner) |
-| 2 | [A2.2] | Editar el estado personal sin conexión, con fusión a tres bandas | [A2.1] |
-| 3 | [A2.3] | Dar de alta obras sin conexión | [A2.1]; [A3.2] |
-| 4 | [A2.4] | Charadas sin conexión, con el mismo mazo que el servidor | [A2.1]; [A3.3] |
-| 5 | [A2.5] | Imágenes: miniatura local y portada en segundo plano | [A2.1] |
-| 6 | [A2.6] | Colecciones seguidas, disponibilidad y puntajes públicos | [A2.1] |
-| 7 | [A3.4] | Búsqueda sin conexión con el ranking medido contra el corpus del servidor | [A2.1] |
+| 1 | [A5] | Probar la sincronización y la fusión en cada caso de una misma cuenta usada por separado, antes de construir pantallas | — |
+| 2 | [A2.1] | Aparear y ver el catálogo real sin conexión | [A3.1] |
+| 3 | [A2.2] | Editar el estado personal sin conexión, con la fusión que probó [A5] | [A2.1]; [A5] |
+| 4 | [A2.3] | Dar de alta obras sin conexión | [A2.1]; [A3.2] |
+| 5 | [A2.4] | Charadas sin conexión, con el mismo mazo que el servidor | [A2.1]; [A3.3] |
+| 6 | [A2.5] | Imágenes: miniatura local y portada en segundo plano | [A2.1] |
+| 7 | [A2.6] | Colecciones seguidas, disponibilidad y puntajes públicos | [A2.1] |
+| 8 | [A3.4] | Búsqueda sin conexión con el ranking medido contra el corpus del servidor | [A2.1] |
 | — | [A4] | Calidad y entrega: CI, prueba del contrato, `compileSdk` 37, firma | se toma cuando haga falta |
+
+**Por qué la sincronización va primero**, por decisión del owner del 2026-09-13: es la parte
+que puede obligar a cambiar el contrato con el servidor, y descubrirlo después de construir
+pantallas sale caro. Se prueba sin interfaz y sin apareamiento.
 
 **Para probar [A2.1] de punta a punta** hacen falta dos cosas que no son de este repo: la
 pantalla del servidor que genera el QR, que es un traspaso al frente visual de allá, y el
@@ -65,14 +70,15 @@ va por el camino de revisión que ya existe. Confundirlas obligaría a inventar 
     **Servidor: hecho** —ticket de un solo uso, canje en `POST /api/v1/pair`, QR dibujado en
     el servidor y pin derivado del certificado; commits `334f4fe`, `e9bcaab` y `11dbe0b`—,
     salvo la pantalla que muestra el QR.
-    **Depende de**: [A3.1], para confiar en el certificado; y, antes de arrancar, la decisión
-    del owner sobre qué pasa con los datos al desaparear.
+    **Depende de**: [A3.1], para confiar en el certificado. Al desaparear, los datos del
+    teléfono **persisten**, por decisión del owner del 2026-09-13.
   - [ ] **[A2.2] Edición personal sin conexión y fusión a tres bandas.** Room guarda por obra
     la **base** —el estado del servidor en la última sincronización exitosa— y la local
     actual. La base **sólo avanza cuando una sincronización termina entera**: una cortada a
     la mitad no puede dejar el teléfono creyendo que convergió. Incluye la interfaz de
     conflictos, que muestra los dos valores y deja elegir por campo.
-    **Servidor**: el `PATCH` de estado personal ya existe.
+    **Servidor**: el `PATCH` de estado personal ya existe, sin precondición; si [A5.1]
+    confirma que hace falta una, es [X2] del servidor. Las reglas y los casos salen de [A5].
   - [ ] **[A2.3] Alta sin conexión.** El caso de uso central. Borrador local con id de
     cliente, marcado como no enriquecido, que **no expira**. Al escribirlo, el teléfono avisa
     si se parece a algo que ya tenés, con la normalización del servidor portada ([A3.2]). Es
@@ -114,6 +120,55 @@ va por el camino de revisión que ya existe. Confundirlas obligaría a inventar 
   ejecución** desde la huella SPKI que trae el QR. Nunca un trust manager permisivo ni
   deshabilitar la verificación de hostname.
 
+### Frente: Sincronización
+
+#### [A5] Probar la sincronización y la fusión antes de construir pantallas
+
+Pedido del owner el 2026-09-13: lo primero es saber **cómo se sincroniza** y **qué pasa en
+cada caso en que una misma cuenta se usa por separado** —la web y un teléfono, o dos
+teléfonos—, y cómo se arma la fusión. Se prueba sin interfaz y sin apareamiento: sesiones de
+dispositivo por `POST /api/v1/auth/login` contra una instancia descartable del servidor, con
+un catálogo sintético.
+
+**Lo que ya se sabe del servidor**, leído en su código el 2026-09-13: `PATCH
+/api/v1/catalog/items/{id}/personal` aplica los valores tal como llegan, sin precondición.
+Si la web u otro teléfono cambió el mismo campo entre que este teléfono bajó el estado y lo
+subió, **gana el último y el otro cambio se pierde sin aviso**. La fusión a tres bandas del
+teléfono no alcanza para evitarlo: decide con lo que bajó, no con lo que hay en el servidor
+en el momento de subir.
+
+  - [ ] **[A5.1] Matriz de casos.** Cada caso con su resultado esperado, lo que hace hoy el
+    servidor y si hace falta cambiar algo. Como mínimo:
+    1. El teléfono edita sin red y la web no toca esa obra.
+    2. La web edita y el teléfono no.
+    3. Los dos cambian el mismo campo al mismo valor.
+    4. Los dos cambian el mismo campo a valores distintos: decide la persona.
+    5. Cambian campos distintos de la misma obra.
+    6. Dos teléfonos con la misma cuenta, sincronizando uno después del otro.
+    7. Una edición en la web, o en otro teléfono, entre que el teléfono baja y sube.
+    8. Una sincronización cortada a la mitad, y su reintento.
+    9. Una obra que en el servidor se fusionó con un duplicado o se borró, con cambios
+       pendientes en el teléfono.
+    10. La misma obra dada de alta sin conexión en dos teléfonos, o una que ya existía.
+    11. Desaparear con cambios pendientes —los datos persisten—, volver a aparear con la misma
+        cuenta, y aparear con **otra** cuenta, que nunca puede mezclar datos de las dos.
+    12. Sesión revocada o contraseña cambiada con cambios pendientes.
+    13. Campos que se afectan entre sí: `status` y `watched_at`; puntaje en 0 y puntaje vacío;
+        review vacía y review ausente.
+    **Modelo sugerido**: Grande.
+  - [ ] **[A5.2] Reglas de fusión como código puro.** Un módulo Kotlin sin Android, con una
+    prueba por fila de la matriz: por campo, qué pasa si cambió un lado, los dos igual o los
+    dos distinto, y cómo se presenta un conflicto. **Modelo sugerido**: Grande.
+  - [ ] **[A5.3] Arnés contra un servidor real.** Dos o más clientes simulados con la misma
+    cuenta, contra una instancia descartable, recorriendo los casos de [A5.1] y comprobando que
+    convergen o que el conflicto le llega a la persona. Es lo que valida que las reglas de
+    [A5.2] describen al servidor verdadero y no a uno imaginado. **Modelo sugerido**: Grande.
+  - [ ] **[A5.4] Lo que el servidor tenga que cambiar.** Lo que muestre la matriz, empezando
+    por la precondición del `PATCH` —[X2] del servidor—, anotado en el tablero de allá antes
+    de construir [A2.2]. **Modelo sugerido**: Medio.
+  - **Decisiones que salen de acá**: si los datos siguen editables mientras el teléfono está
+    desapareado, y cómo ve la persona un conflicto.
+
 ### Frente: Lo que se reimplementa del servidor
 
 #### [A3] Portes del servidor
@@ -151,8 +206,7 @@ sin exigir paridad exacta.
 #### [A4] Calidad y entrega
 
   - [ ] **[A4.1] CI.** `assembleDebug` y pruebas unitarias en GitHub Actions.
-    **Depende de**: que exista el repositorio remoto (decisión del owner). **Modelo
-    sugerido**: Chico.
+    El repositorio remoto ya existe. **Modelo sugerido**: Chico.
   - [ ] **[A4.2] Prueba del contrato.** Que el cliente falle si su modelo de datos se aparta
     de `contract/device-api-v1.openapi.json`, y que actualizar la copia sea un cambio visible.
     **Modelo sugerido**: Medio.
@@ -163,13 +217,17 @@ sin exigir paridad exacta.
     y cómo llega el APK al teléfono. **Depende de**: tener algo instalable que sirva
     ([A2.1]). **Modelo sugerido**: Medio.
 
-### Decisiones abiertas del owner
+### Decisiones del owner
 
-1. **Qué pasa con los datos del teléfono si se desaparea.** Recomendación: conservarlos y
-   permitir volver a aparear. **Conviene decidirlo antes de [A2.1].**
-2. **PIN o biometría propios** además de la pantalla de bloqueo. No frena [A2.1].
-3. **Licencia** de este repositorio. El servidor es GPL-3.0.
-4. **Repositorio remoto**: nombre y visibilidad en GitHub. Frena [A4.1].
+**Tomadas el 2026-09-13:**
+
+- **Al desaparear, los datos del teléfono persisten.** Si siguen editables mientras tanto, y
+  qué pasa al aparear con otra cuenta, se define en [A5.1].
+- **La sincronización se prueba primero**, antes de construir pantallas: [A5].
+- **Licencia GPL-3.0**, la misma que el servidor.
+- **Repositorio remoto**: `github.com/pasaporteN25/MovieCacheAndroid`.
+
+**Abierta:** PIN o biometría propios, además de la pantalla de bloqueo. No frena [A2.1].
 
 ---
 

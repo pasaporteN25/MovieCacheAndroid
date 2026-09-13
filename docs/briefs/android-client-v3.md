@@ -274,6 +274,6 @@ respetar `X-Movie-Inbox-Api-Version`; y no usar el `/api/` histórico, cookies n
 2. **Autenticación local en el teléfono.** Con la cuenta viniendo de la instancia, la
    identidad está resuelta, pero falta decidir si la aplicación quiere PIN o biometría
    propios además de la pantalla de bloqueo. Las reviews y las notas son datos personales.
-3. **Qué pasa si desaparean.** ¿Los datos locales se borran, se conservan de sólo lectura, o
-   se ofrece exportarlos? Con cuenta obligatoria hay una respuesta razonable —conservar y
-   permitir volver a aparear— pero conviene decidirla antes de A2.1, no después.
+3. ~~**Qué pasa si desaparean.**~~ **Decidido el 2026-09-13: los datos persisten.** Si siguen
+   editables mientras el teléfono está desapareado, y qué pasa al aparear con otra cuenta, se
+   define en [A5.1] del tablero de este repositorio.

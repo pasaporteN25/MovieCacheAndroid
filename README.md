@@ -62,3 +62,7 @@ de dependencias, en [`docs/briefs/android-setup.md`](docs/briefs/android-setup.m
 | [`docs/briefs/android-client-v3.md`](docs/briefs/android-client-v3.md) | Plan de construcción vigente |
 | [`contract/`](contract/) | Contrato de la API y vectores, copiados del servidor |
 | [`CLAUDE.md`](CLAUDE.md) | Reglas del repositorio para agentes |
+
+## Licencia
+
+GPL-3.0, la misma que el servidor. Ver [`LICENSE`](LICENSE).

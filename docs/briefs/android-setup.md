@@ -198,9 +198,8 @@ Dos opciones, y conviene la segunda para lo que querés:
 2. **Autenticación local.** Con la cuenta viniendo de la instancia la identidad ya está
    resuelta, pero falta decidir si querés PIN o biometría propios además de la pantalla de
    bloqueo del teléfono. Las reviews y las notas son datos personales.
-3. **Qué pasa si desapareás el teléfono.** ¿Los datos locales se borran, quedan de sólo
-   lectura, o se ofrece exportarlos? Mi recomendación es conservarlos y permitir volver a
-   aparear.
+3. ~~**Qué pasa si desapareás el teléfono.**~~ **Decidido el 2026-09-13: los datos
+   persisten.** Si siguen editables y qué pasa con otra cuenta se define en [A5.1].
 
 ## Por qué el orden es este
 
