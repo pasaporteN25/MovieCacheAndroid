@@ -22,7 +22,7 @@ tienen que hablar el mismo idioma. Ese idioma es el contrato copiado en `contrac
 | Hito | Qué podés hacer con el teléfono | Tareas | Del lado del servidor |
 | --- | --- | --- | --- |
 | **M0 — Entorno** | Compilar el proyecto | [A2.0], cerrada 2026-09-13 | — |
-| **M1 — Sincronización probada** | Todavía nada en la mano: saber que la fusión es correcta en cada caso antes de construir pantallas | [A5] | El `PATCH` personal no tiene precondición; [X2] si la matriz lo confirma |
+| **M1 — Sincronización probada** | Todavía nada en la mano: saber que la fusión es correcta en cada caso antes de construir pantallas | [A5] | [X2], que la matriz confirmó; [X4], sesiones que no vencen |
 | **M2 — Aparear y leer** | Aparear por QR y ver tu catálogo sin conexión | [A2.1], [A3.1] | Hecho, salvo la pantalla del QR y los vectores del pin ([X1.1]) |
 | **M3 — Editar** | Marcar vistas, puntuar y escribir reviews sin red; resolver conflictos | [A2.2] | Lo que salga de [A5] |
 | **M4 — Alta sin conexión** | Guardar películas en cualquier lado | [A2.3], [A3.2] | Hecho, salvo los vectores de normalización ([X1.2]) |
@@ -56,16 +56,18 @@ Las fuentes están en el repositorio del servidor, salvo las marcadas como de es
 | 2026-09-13 | Al desaparear, los datos del teléfono persisten | Owner; el detalle, en [A5.1] |
 | 2026-09-13 | La sincronización se prueba antes de construir pantallas | Owner; [A5] |
 | 2026-09-13 | Licencia GPL-3.0; remoto `pasaporteN25/MovieCacheAndroid` | Owner |
+| 2026-09-14 | Con el teléfono desapareado se puede seguir editando; los cambios viajan al volver a aparear la misma cuenta | Owner; matriz de [A5.1] |
+| 2026-09-14 | Para cambiar de cuenta, primero se sincroniza la actual | Owner; matriz de [A5.1] |
+| 2026-09-14 | La sesión de un teléfono no vence por tiempo | Owner; [X4] del servidor |
+| 2026-09-14 | El servidor registra cuándo cambia cada campo personal, en el backlog | Owner; [X3] del servidor |
 
 ## Abierto
 
 PIN o biometría propios, además de la pantalla de bloqueo.
 
-Y seis decisiones que dejó [A5.1], cada una con su recomendación en
+Y tres decisiones que dejó [A5.1], con su recomendación en
 `docs/analisis/matriz-de-sincronizacion-2026-09-14.md`:
-1. si los datos siguen editables con el teléfono desapareado;
-2. cómo ve la persona un conflicto;
-3. qué pasa con los datos al aparear otra cuenta;
-4. la redacción del invariante 3 sobre la base, que leída al pie de la letra pierde datos;
-5. qué se muestra de una obra que ya no está en la instancia;
-6. si 30 días sin renovar es un vencimiento razonable para la sesión de un teléfono.
+1. cómo ve la persona un conflicto;
+2. la redacción del invariante 3 sobre la base, que leída al pie de la letra pierde datos;
+3. si borrar una obra en un lado la borra en el otro al sincronizar. El owner se inclina por
+   que sí, lo que revierte "la sincronización nunca borra" de ADR-0005.

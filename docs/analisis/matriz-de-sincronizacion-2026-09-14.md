@@ -438,6 +438,24 @@ servidor.
    cambiar una constante del servidor, pero una sesión más larga es también un token robado
    que dura más (caso 12).
 
+## Respuestas del owner, 2026-09-14
+
+1. **Editar con el teléfono desapareado: sí**, como se recomendó.
+2. **Cómo se ve un conflicto: queda para retomar**, junto con una explicación más clara de la
+   fecha. El owner pidió además que el servidor registre cuándo cambia cada campo personal,
+   para tener historial y facilitar la sincronización: es **[X3]** del servidor. La marca
+   informa a la persona; no decide un conflicto.
+3. **Otra cuenta: como se recomendó.** Primero se sincroniza la cuenta actual, y después se
+   permite cambiar. Mejorarlo más adelante queda como idea.
+4. **La redacción del invariante 3: pendiente**, hasta explicarlo mejor.
+5. **Una obra que ya no está: pendiente, y con otro alcance.** El owner quiere que borrar una
+   obra en un lado la borre también en el otro al sincronizar. Eso revierte ADR-0005 (§3, "la
+   sincronización nunca borra") y el invariante 3 de este repositorio, así que se confirma con
+   sus condiciones antes de anotarlo como decisión.
+6. **La sesión de un teléfono no vence por tiempo**, y volver a aparear no puede dar problemas.
+   Es **[X4]** del servidor, que además hace reintentable la renovación (caso 8) y permite
+   revocar teléfonos desde la web.
+
 ## Lo que [A5.3] tiene que reproducir contra un servidor real
 
 Las filas donde esta matriz afirma que algo se pierde o se traba, que son las que justifican

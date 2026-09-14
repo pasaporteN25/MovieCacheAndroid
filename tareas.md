@@ -178,7 +178,8 @@ en el momento de subir.
     por la precondición del `PATCH` —[X2] del servidor—, anotado en el tablero de allá antes
     de construir [A2.2]. **Modelo sugerido**: Medio.
   - **Decisiones que salen de acá**: seis, con su recomendación, en la sección "Decisiones
-    para el owner" de la matriz. Esperan al owner. [A5.2] puede arrancar con las reglas que no
+    para el owner" de la matriz. El owner respondió el 2026-09-14 (sección "Respuestas del
+    owner"), y quedan abiertas la 2, la 4 y la 5. [A5.2] puede arrancar con las reglas que no
     dependen de ellas.
 
 ### Frente: Lo que se reimplementa del servidor
@@ -233,21 +234,37 @@ sin exigir paridad exacta.
 
 **Tomadas el 2026-09-13:**
 
-- **Al desaparear, los datos del teléfono persisten.** Si siguen editables mientras tanto, y
-  qué pasa al aparear con otra cuenta, lo propone [A5.1] (decisiones 1 y 3 de la matriz) y
-  espera al owner.
+- **Al desaparear, los datos del teléfono persisten.**
 - **La sincronización se prueba primero**, antes de construir pantallas: [A5].
 - **Licencia GPL-3.0**, la misma que el servidor.
 - **Repositorio remoto**: `github.com/pasaporteN25/MovieCacheAndroid`.
 
-**Abierta:** PIN o biometría propios, además de la pantalla de bloqueo. No frena [A2.1].
+**Tomadas el 2026-09-14**, al responder la matriz de [A5.1]:
+
+- **Con el teléfono desapareado se puede seguir editando**, y los cambios viajan al volver a
+  aparear la misma cuenta.
+- **Para cambiar de cuenta, primero se sincroniza la actual.** Mejorarlo más adelante queda
+  como idea.
+- **La sesión de un teléfono no vence por tiempo**, y volver a aparear no puede dar problemas:
+  [X4] del servidor.
+- **El servidor registra cuándo cambia cada campo personal**, en su backlog: [X3] del
+  servidor. Informa en un conflicto; no lo decide.
+
+**Abiertas:**
+
+- PIN o biometría propios, además de la pantalla de bloqueo. No frena [A2.1].
+- Cómo ve la persona un conflicto (decisión 2 de la matriz).
+- La redacción del invariante 3 sobre la base (decisión 4).
+- Si borrar una obra en un lado la borra en el otro al sincronizar (decisión 5). El owner se
+  inclina por que sí; como revierte ADR-0005 (§3) y el invariante 3, se confirma con sus
+  condiciones antes de anotarla.
 
 ---
 
 ## En curso
 
-- **[A5]**: [A5.1] quedó cerrada el 2026-09-14. Siguen las seis decisiones del owner que dejó la
-  matriz, y [A5.2].
+- **[A5]**: [A5.1] quedó cerrada el 2026-09-14, y el owner ya resolvió la 1, la 3 y la 6 de sus
+  decisiones. Siguen la 2, la 4 y la 5, y [A5.2].
 
 ## Hecho
 
