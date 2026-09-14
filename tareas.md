@@ -137,7 +137,7 @@ subió, **gana el último y el otro cambio se pierde sin aviso**. La fusión a t
 teléfono no alcanza para evitarlo: decide con lo que bajó, no con lo que hay en el servidor
 en el momento de subir.
 
-  - [ ] **[A5.1] Matriz de casos.** Cada caso con su resultado esperado, lo que hace hoy el
+  - [x] **[A5.1] Matriz de casos.** Cada caso con su resultado esperado, lo que hace hoy el
     servidor y si hace falta cambiar algo. Como mínimo:
     1. El teléfono edita sin red y la web no toca esa obra.
     2. La web edita y el teléfono no.
@@ -156,6 +156,17 @@ en el momento de subir.
     13. Campos que se afectan entre sí: `status` y `watched_at`; puntaje en 0 y puntaje vacío;
         review vacía y review ausente.
     **Modelo sugerido**: Grande.
+    **Cerrada el 2026-09-14**, en `docs/analisis/matriz-de-sincronizacion-2026-09-14.md`,
+    leída en el servidor en `83a5cf4`. Salieron 18 casos: los 13 pedidos y 5 encontrados en el
+    código. Dos pierden un cambio sin aviso:
+    - el 7, que confirma [X2];
+    - el 14, una ficha web abierta desde antes de sincronizar.
+
+    Además dejó:
+    - doce reglas para [A5.2];
+    - ocho cambios de servidor para [A5.4];
+    - seis decisiones del owner, entre ellas la redacción del invariante 3, que leído al pie de
+      la letra pierde datos.
   - [ ] **[A5.2] Reglas de fusión como código puro.** Un módulo Kotlin sin Android, con una
     prueba por fila de la matriz: por campo, qué pasa si cambió un lado, los dos igual o los
     dos distinto, y cómo se presenta un conflicto. **Modelo sugerido**: Grande.
@@ -166,8 +177,9 @@ en el momento de subir.
   - [ ] **[A5.4] Lo que el servidor tenga que cambiar.** Lo que muestre la matriz, empezando
     por la precondición del `PATCH` —[X2] del servidor—, anotado en el tablero de allá antes
     de construir [A2.2]. **Modelo sugerido**: Medio.
-  - **Decisiones que salen de acá**: si los datos siguen editables mientras el teléfono está
-    desapareado, y cómo ve la persona un conflicto.
+  - **Decisiones que salen de acá**: seis, con su recomendación, en la sección "Decisiones
+    para el owner" de la matriz. Esperan al owner. [A5.2] puede arrancar con las reglas que no
+    dependen de ellas.
 
 ### Frente: Lo que se reimplementa del servidor
 
@@ -222,7 +234,8 @@ sin exigir paridad exacta.
 **Tomadas el 2026-09-13:**
 
 - **Al desaparear, los datos del teléfono persisten.** Si siguen editables mientras tanto, y
-  qué pasa al aparear con otra cuenta, se define en [A5.1].
+  qué pasa al aparear con otra cuenta, lo propone [A5.1] (decisiones 1 y 3 de la matriz) y
+  espera al owner.
 - **La sincronización se prueba primero**, antes de construir pantallas: [A5].
 - **Licencia GPL-3.0**, la misma que el servidor.
 - **Repositorio remoto**: `github.com/pasaporteN25/MovieCacheAndroid`.
@@ -233,7 +246,8 @@ sin exigir paridad exacta.
 
 ## En curso
 
-Nada.
+- **[A5]**: [A5.1] quedó cerrada el 2026-09-14. Siguen las seis decisiones del owner que dejó la
+  matriz, y [A5.2].
 
 ## Hecho
 

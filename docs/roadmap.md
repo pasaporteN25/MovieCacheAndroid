@@ -59,5 +59,13 @@ Las fuentes están en el repositorio del servidor, salvo las marcadas como de es
 
 ## Abierto
 
-PIN o biometría propios, además de la pantalla de bloqueo. Y dos que van a salir de [A5]: si
-los datos siguen editables con el teléfono desapareado, y cómo ve la persona un conflicto.
+PIN o biometría propios, además de la pantalla de bloqueo.
+
+Y seis decisiones que dejó [A5.1], cada una con su recomendación en
+`docs/analisis/matriz-de-sincronizacion-2026-09-14.md`:
+1. si los datos siguen editables con el teléfono desapareado;
+2. cómo ve la persona un conflicto;
+3. qué pasa con los datos al aparear otra cuenta;
+4. la redacción del invariante 3 sobre la base, que leída al pie de la letra pierde datos;
+5. qué se muestra de una obra que ya no está en la instancia;
+6. si 30 días sin renovar es un vencimiento razonable para la sesión de un teléfono.

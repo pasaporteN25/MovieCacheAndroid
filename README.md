@@ -59,6 +59,7 @@ de dependencias, en [`docs/briefs/android-setup.md`](docs/briefs/android-setup.m
 | [`tareas.md`](tareas.md) | Tablero: backlog, en curso y hecho |
 | [`docs/roadmap.md`](docs/roadmap.md) | Hitos, orden y decisiones que rigen |
 | [`docs/analisis/lo-que-viene-del-servidor-2026-09-13.md`](docs/analisis/lo-que-viene-del-servidor-2026-09-13.md) | Qué se reimplementa del servidor, qué se consume y qué no se trae |
+| [`docs/analisis/matriz-de-sincronizacion-2026-09-14.md`](docs/analisis/matriz-de-sincronizacion-2026-09-14.md) | Qué pasa en cada caso de sincronización, qué hace hoy el servidor y qué hay que cambiar |
 | [`docs/briefs/android-client-v3.md`](docs/briefs/android-client-v3.md) | Plan de construcción vigente |
 | [`contract/`](contract/) | Contrato de la API y vectores, copiados del servidor |
 | [`CLAUDE.md`](CLAUDE.md) | Reglas del repositorio para agentes |
