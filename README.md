@@ -23,7 +23,8 @@ cuando vos lo pedís:
 
 La sincronización la inicia una persona. Lo que borrás en un lado se borra en el otro, pero
 una obra que simplemente falta **nunca borra nada**. Cuando los dos lados cambiaron lo mismo
-de forma distinta, el puntaje se resuelve solo, por el más alto, y en lo demás **decide la
+de forma distinta, se resuelve solo: gana el puntaje más alto, se conservan las dos reviews y
+"vista" gana con la fecha más reciente. Sólo un borrado contra una edición **lo decide la
 persona**.
 
 ## Cómo se relaciona con el servidor

@@ -478,6 +478,18 @@ Reemplaza lo anotado arriba en los puntos 2, 4, 5 y 6.
    pedirse más seguido. Queda sin efecto lo anotado en la primera ronda. [X4] conserva la
    renovación reintentable y la revocación desde la web.
 
+## Tercera ronda, 2026-09-14
+
+Cierra las dos preguntas que dejó la segunda ronda.
+
+- **Conflictos de review y de "visto": se resuelven solos.** Si los dos lados cambiaron la
+  review a textos distintos, se conservan los dos, uno debajo del otro, y no se pierde ninguno.
+  Si cambiaron "visto" de forma distinta, "vista" gana sobre "pendiente", y entre dos fechas
+  queda la más reciente. Como el puntaje ya se resolvía solo, el único conflicto que llega a
+  la persona es un borrado contra una edición.
+- **El mes de la llave se cuenta desde la última sincronización**, como hoy: un teléfono que
+  sincroniza al menos una vez por mes no vuelve a escanear el QR.
+
 ## Lo que [A5.3] tiene que reproducir contra un servidor real
 
 Las filas donde esta matriz afirma que algo se pierde o se traba, que son las que justifican

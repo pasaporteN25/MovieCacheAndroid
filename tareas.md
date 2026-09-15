@@ -179,9 +179,8 @@ en el momento de subir.
     por la precondición del `PATCH` —[X2] del servidor—, anotado en el tablero de allá antes
     de construir [A2.2]. **Modelo sugerido**: Medio.
   - **Decisiones que salen de acá**: seis, con su recomendación, en la sección "Decisiones
-    para el owner" de la matriz. El owner las respondió el 2026-09-14 en dos rondas (secciones
-    "Respuestas del owner" y "Segunda ronda"). Quedan dos preguntas: cómo se resuelve un
-    conflicto de review o de "visto", y desde cuándo se cuenta el mes de la llave.
+    para el owner" de la matriz. El owner las respondió todas el 2026-09-14, en tres rondas
+    (secciones "Respuestas del owner", "Segunda ronda" y "Tercera ronda").
 
 ### Frente: Lo que se reimplementa del servidor
 
@@ -264,22 +263,22 @@ sin exigir paridad exacta.
   Revierte "nunca borra" de ADR-0005 y es [X5] del servidor. Para su diseño, el owner sugiere
   seguir cada obra con un identificador propio y durable.
 - **La llave de un teléfono vence, y pasado un mes hay que volver a escanear el QR.** Revisa
-  el "no vence" de la primera ronda, por seguridad, y podría pedirse más seguido. [X4] del
-  servidor sigue, sin el cambio de vencimiento.
+  el "no vence" de la primera ronda, por seguridad, y podría pedirse más seguido. El mes se
+  cuenta desde la última sincronización, como hoy. [X4] del servidor sigue, sin el cambio de
+  vencimiento.
+- **Los conflictos de review y de "visto" también se resuelven solos.** La review conserva los
+  dos textos, uno debajo del otro. En "visto", "vista" gana sobre "pendiente", y entre dos
+  fechas queda la más reciente. El único conflicto que llega a la persona es un borrado
+  contra una edición.
 
-**Abiertas:**
-
-- PIN o biometría propios, además de la pantalla de bloqueo. No frena [A2.1].
-- Cómo se resuelve un conflicto de review o de "visto".
-- Si el mes de la llave se cuenta desde la última renovación, como hoy, o desde que se apareó.
+**Abierta:** PIN o biometría propios, además de la pantalla de bloqueo. No frena [A2.1].
 
 ---
 
 ## En curso
 
-- **[A5]**: [A5.1] quedó cerrada el 2026-09-14, y el owner respondió sus decisiones. Quedan dos
-  preguntas chicas —los conflictos de review y de "visto", y desde cuándo cuenta el mes de la
-  llave— y sigue [A5.2].
+- **[A5]**: [A5.1] quedó cerrada el 2026-09-14, con todas sus decisiones respondidas por el
+  owner. Sigue [A5.2].
 
 ## Hecho
 

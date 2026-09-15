@@ -13,8 +13,9 @@ Una aplicación que **funciona sola** y **se conecta cuando vos querés**:
   buscar, editar tu estado personal y dar de alta obras.
 - La **sincronización la inicia una persona** y es bidireccional. Un borrado viaja al otro lado
   sólo como registro de que una persona borró: que una obra falte **nunca borra nada**. Si los
-  dos lados cambiaron lo mismo de forma distinta, el puntaje se resuelve solo por el más alto,
-  y en lo demás **decide la persona**.
+  dos lados cambiaron lo mismo de forma distinta, se resuelve solo con reglas fijas —el puntaje
+  más alto, las dos reviews, "vista" con la fecha más reciente—, y sólo un borrado contra una
+  edición **lo decide la persona**.
 
 "Independiente" no quiere decir "sin acuerdo con el servidor": cuando sincronizan, los dos
 tienen que hablar el mismo idioma. Ese idioma es el contrato copiado en `contract/`.
@@ -65,13 +66,10 @@ Las fuentes están en el repositorio del servidor, salvo las marcadas como de es
 | 2026-09-14 | La base de un campo sólo avanza con un valor que confirmó el servidor. Si trae problemas, la alternativa es descartar la sincronización que quedó a medias y repetirla | Owner; invariante 3 de `CLAUDE.md` |
 | 2026-09-14 | Los borrados viajan, sólo como registro de que una persona borró; borrar de un lado y editar del otro lo decide la persona; unir duplicados mueve lo pendiente a la obra que queda | Owner; revierte "nunca borra" de ADR-0005; [X5] del servidor |
 | 2026-09-14 | La llave de un teléfono vence: pasado un mes hay que volver a escanear el QR, y podría pedirse más seguido | Owner, que revisó ese mismo día un "no vence" anterior; [X4] del servidor |
+| 2026-09-14 | Un conflicto de review conserva los dos textos; en "visto", "vista" gana sobre "pendiente" con la fecha más reciente | Owner; matriz de [A5.1] |
+| 2026-09-14 | El mes de la llave se cuenta desde la última sincronización | Owner; [X4] del servidor |
 
 ## Abierto
 
-PIN o biometría propios, además de la pantalla de bloqueo.
-
-Y dos preguntas que dejó [A5.1] (`docs/analisis/matriz-de-sincronizacion-2026-09-14.md`):
-1. cómo se resuelve un conflicto de review o de "visto", ahora que el de puntaje se resuelve
-   solo;
-2. si el mes de la llave se cuenta desde la última vez que el teléfono la renovó, como hoy, o
-   desde que se apareó, aunque se use.
+PIN o biometría propios, además de la pantalla de bloqueo. Las decisiones que dejó [A5.1] ya
+están todas tomadas (`docs/analisis/matriz-de-sincronizacion-2026-09-14.md`).
