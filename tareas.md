@@ -47,7 +47,8 @@ servidor.
 - **Alcance**: aplicación Android nativa (Kotlin + Compose) con almacén local propio. Se
   aparea una vez con una cuenta que ya existe en la instancia, y **desde ahí funciona sin
   conexión**: explorar, buscar, editar estado personal y **dar de alta obras nuevas**. La
-  sincronización es bidireccional, la inicia una persona y **nunca borra**.
+  sincronización es bidireccional y la inicia una persona. Un borrado viaja sólo como registro
+  de que una persona borró; que una obra falte **nunca borra nada**.
 - **Caso de uso que manda**, dicho por el owner: *guardar películas en la colección sin estar
   frente a la computadora ni en casa*. Todo el orden de entrega sale de ahí.
 - **Criterio de cierre**: el teléfono muestra y edita el catálogo real sin conexión, y una
@@ -178,9 +179,9 @@ en el momento de subir.
     por la precondición del `PATCH` —[X2] del servidor—, anotado en el tablero de allá antes
     de construir [A2.2]. **Modelo sugerido**: Medio.
   - **Decisiones que salen de acá**: seis, con su recomendación, en la sección "Decisiones
-    para el owner" de la matriz. El owner respondió el 2026-09-14 (sección "Respuestas del
-    owner"), y quedan abiertas la 2, la 4 y la 5. [A5.2] puede arrancar con las reglas que no
-    dependen de ellas.
+    para el owner" de la matriz. El owner las respondió el 2026-09-14 en dos rondas (secciones
+    "Respuestas del owner" y "Segunda ronda"). Quedan dos preguntas: cómo se resuelve un
+    conflicto de review o de "visto", y desde cuándo se cuenta el mes de la llave.
 
 ### Frente: Lo que se reimplementa del servidor
 
@@ -239,32 +240,46 @@ sin exigir paridad exacta.
 - **Licencia GPL-3.0**, la misma que el servidor.
 - **Repositorio remoto**: `github.com/pasaporteN25/MovieCacheAndroid`.
 
-**Tomadas el 2026-09-14**, al responder la matriz de [A5.1]:
+**Tomadas el 2026-09-14**, al responder la matriz de [A5.1] en dos rondas:
 
 - **Con el teléfono desapareado se puede seguir editando**, y los cambios viajan al volver a
   aparear la misma cuenta.
 - **Para cambiar de cuenta, primero se sincroniza la actual.** Mejorarlo más adelante queda
   como idea.
-- **La sesión de un teléfono no vence por tiempo**, y volver a aparear no puede dar problemas:
-  [X4] del servidor.
 - **El servidor registra cuándo cambia cada campo personal**, en su backlog: [X3] del
   servidor. Informa en un conflicto; no lo decide.
+- **Un conflicto de puntaje se resuelve solo, por el más alto.** Es así por definición, no por
+  una limitación, y se puede cambiar más adelante; no es prioridad.
+- **La base de un campo sólo avanza con un valor que confirmó el servidor**, en la misma
+  transacción que la réplica: es el invariante 3. Si esa regla trae otro problema, la
+  alternativa anotada es descartar la sincronización que quedó a medias y pedir que se haga de
+  nuevo, que al owner le parece mejor y más escalable a futuro.
+- **Los borrados viajan**, con tres condiciones:
+  - un borrado viaja sólo como registro de que una persona borró, y que una obra falte nunca
+    borra nada;
+  - si un lado borró y el otro editó la misma obra, decide la persona;
+  - unir duplicados en la web cuenta como borrar el duplicado, y lo pendiente pasa a la obra
+    que queda.
+
+  Revierte "nunca borra" de ADR-0005 y es [X5] del servidor. Para su diseño, el owner sugiere
+  seguir cada obra con un identificador propio y durable.
+- **La llave de un teléfono vence, y pasado un mes hay que volver a escanear el QR.** Revisa
+  el "no vence" de la primera ronda, por seguridad, y podría pedirse más seguido. [X4] del
+  servidor sigue, sin el cambio de vencimiento.
 
 **Abiertas:**
 
 - PIN o biometría propios, además de la pantalla de bloqueo. No frena [A2.1].
-- Cómo ve la persona un conflicto (decisión 2 de la matriz).
-- La redacción del invariante 3 sobre la base (decisión 4).
-- Si borrar una obra en un lado la borra en el otro al sincronizar (decisión 5). El owner se
-  inclina por que sí; como revierte ADR-0005 (§3) y el invariante 3, se confirma con sus
-  condiciones antes de anotarla.
+- Cómo se resuelve un conflicto de review o de "visto".
+- Si el mes de la llave se cuenta desde la última renovación, como hoy, o desde que se apareó.
 
 ---
 
 ## En curso
 
-- **[A5]**: [A5.1] quedó cerrada el 2026-09-14, y el owner ya resolvió la 1, la 3 y la 6 de sus
-  decisiones. Siguen la 2, la 4 y la 5, y [A5.2].
+- **[A5]**: [A5.1] quedó cerrada el 2026-09-14, y el owner respondió sus decisiones. Quedan dos
+  preguntas chicas —los conflictos de review y de "visto", y desde cuándo cuenta el mes de la
+  llave— y sigue [A5.2].
 
 ## Hecho
 

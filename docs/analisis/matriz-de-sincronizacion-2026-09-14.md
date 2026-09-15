@@ -456,6 +456,28 @@ servidor.
    Es **[X4]** del servidor, que además hace reintentable la renovación (caso 8) y permite
    revocar teléfonos desde la web.
 
+## Segunda ronda de respuestas, 2026-09-14
+
+Reemplaza lo anotado arriba en los puntos 2, 4, 5 y 6.
+
+2. **Un conflicto de puntaje se resuelve solo, por el más alto**, siempre. Es así por
+   definición y se puede cambiar más adelante; mostrar conflictos no es prioridad. Falta
+   definir qué pasa con la review y con "visto".
+4. **Cambia la redacción del invariante 3**, como se propuso: la base de un campo sólo avanza
+   con un valor que confirmó el servidor. Si eso trae otro problema, la alternativa anotada es
+   la otra forma del caso 8, descartar la sincronización que quedó a medias y pedir que se
+   haga de nuevo, que al owner le parece mejor y más escalable a futuro.
+5. **Los borrados viajan**, con las condiciones propuestas:
+   - sólo viajan como registro de que una persona borró, nunca porque una obra falte;
+   - si un lado borró y el otro editó, decide la persona;
+   - unir duplicados cuenta como borrar el duplicado, y lo pendiente pasa a la obra que queda.
+
+   Revierte ADR-0005, §3, y es [X5] del servidor. El owner sugiere seguir cada obra con un
+   identificador propio y durable, lo que también resolvería el caso 17.
+6. **La llave vence**: pasado un mes hay que volver a escanear el QR, y por seguridad podría
+   pedirse más seguido. Queda sin efecto lo anotado en la primera ronda. [X4] conserva la
+   renovación reintentable y la revocación desde la web.
+
 ## Lo que [A5.3] tiene que reproducir contra un servidor real
 
 Las filas donde esta matriz afirma que algo se pierde o se traba, que son las que justifican

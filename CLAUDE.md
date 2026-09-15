@@ -26,9 +26,12 @@ Si una tarea parece exigir romper alguna, parar y preguntar en vez de decidir so
 2. **Nunca la capa operativa.** Rutas, archivos, bibliotecas, Scanner y curaduría no se
    guardan ni se muestran: un teléfono no tiene tus discos. `en_catalogo` se lee, no se
    afirma.
-3. **La sincronización la inicia una persona y nunca borra.** Conflictos por campo, con
-   fusión a tres bandas contra la base de la última sincronización completa. La base sólo
-   avanza cuando una sincronización termina entera.
+3. **La sincronización la inicia una persona, y un borrado viaja sólo como registro
+   explícito.** Que una obra falte de un lado nunca borra nada del otro. Conflictos por
+   campo, con fusión a tres bandas contra la base. La base de un campo sólo avanza con un
+   valor que confirmó el servidor, en la misma transacción que la réplica local, y nunca con
+   un valor supuesto. Redacción del owner del 2026-09-14; la anterior perdía datos (caso 8 de
+   `docs/analisis/matriz-de-sincronizacion-2026-09-14.md`).
 4. **Secretos.** Tokens sólo en Android Keystore: nunca en preferencias sin cifrar, logs,
    URI, portapapeles ni backups (`allowBackup` sigue en `false`).
 5. **TLS.** Certificado válido, o un trust anchor construido desde la huella SPKI que trae el

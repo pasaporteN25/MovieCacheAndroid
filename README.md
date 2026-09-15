@@ -21,8 +21,10 @@ cuando vos lo pedís:
   sincronización y pasan por la misma revisión que cualquier importación.
 - **Charadas** con el mismo mazo en varios teléfonos, sin red.
 
-La sincronización la inicia una persona, **nunca borra**, y cuando los dos lados cambiaron
-lo mismo de forma distinta, **decide la persona**.
+La sincronización la inicia una persona. Lo que borrás en un lado se borra en el otro, pero
+una obra que simplemente falta **nunca borra nada**. Cuando los dos lados cambiaron lo mismo
+de forma distinta, el puntaje se resuelve solo, por el más alto, y en lo demás **decide la
+persona**.
 
 ## Cómo se relaciona con el servidor
 

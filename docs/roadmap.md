@@ -11,8 +11,10 @@ Una aplicación que **funciona sola** y **se conecta cuando vos querés**:
   escaneando un QR de la web.
 - Desde ahí tiene **su propia copia** de tu catálogo y funciona sin conexión: explorar,
   buscar, editar tu estado personal y dar de alta obras.
-- La **sincronización la inicia una persona**, es bidireccional y **nunca borra**. Si los dos
-  lados cambiaron lo mismo de forma distinta, **decide la persona**.
+- La **sincronización la inicia una persona** y es bidireccional. Un borrado viaja al otro lado
+  sólo como registro de que una persona borró: que una obra falte **nunca borra nada**. Si los
+  dos lados cambiaron lo mismo de forma distinta, el puntaje se resuelve solo por el más alto,
+  y en lo demás **decide la persona**.
 
 "Independiente" no quiere decir "sin acuerdo con el servidor": cuando sincronizan, los dos
 tienen que hablar el mismo idioma. Ese idioma es el contrato copiado en `contract/`.
@@ -22,7 +24,7 @@ tienen que hablar el mismo idioma. Ese idioma es el contrato copiado en `contrac
 | Hito | Qué podés hacer con el teléfono | Tareas | Del lado del servidor |
 | --- | --- | --- | --- |
 | **M0 — Entorno** | Compilar el proyecto | [A2.0], cerrada 2026-09-13 | — |
-| **M1 — Sincronización probada** | Todavía nada en la mano: saber que la fusión es correcta en cada caso antes de construir pantallas | [A5] | [X2], que la matriz confirmó; [X4], sesiones que no vencen |
+| **M1 — Sincronización probada** | Todavía nada en la mano: saber que la fusión es correcta en cada caso antes de construir pantallas | [A5] | [X2], que la matriz confirmó; [X4], sesiones que no se pierden por un corte; [X5], bajas que viajan |
 | **M2 — Aparear y leer** | Aparear por QR y ver tu catálogo sin conexión | [A2.1], [A3.1] | Hecho, salvo la pantalla del QR y los vectores del pin ([X1.1]) |
 | **M3 — Editar** | Marcar vistas, puntuar y escribir reviews sin red; resolver conflictos | [A2.2] | Lo que salga de [A5] |
 | **M4 — Alta sin conexión** | Guardar películas en cualquier lado | [A2.3], [A3.2] | Hecho, salvo los vectores de normalización ([X1.2]) |
@@ -58,16 +60,18 @@ Las fuentes están en el repositorio del servidor, salvo las marcadas como de es
 | 2026-09-13 | Licencia GPL-3.0; remoto `pasaporteN25/MovieCacheAndroid` | Owner |
 | 2026-09-14 | Con el teléfono desapareado se puede seguir editando; los cambios viajan al volver a aparear la misma cuenta | Owner; matriz de [A5.1] |
 | 2026-09-14 | Para cambiar de cuenta, primero se sincroniza la actual | Owner; matriz de [A5.1] |
-| 2026-09-14 | La sesión de un teléfono no vence por tiempo | Owner; [X4] del servidor |
 | 2026-09-14 | El servidor registra cuándo cambia cada campo personal, en el backlog | Owner; [X3] del servidor |
+| 2026-09-14 | Un conflicto de puntaje se resuelve solo, por el más alto. Es así por definición y se puede cambiar | Owner; matriz de [A5.1] |
+| 2026-09-14 | La base de un campo sólo avanza con un valor que confirmó el servidor. Si trae problemas, la alternativa es descartar la sincronización que quedó a medias y repetirla | Owner; invariante 3 de `CLAUDE.md` |
+| 2026-09-14 | Los borrados viajan, sólo como registro de que una persona borró; borrar de un lado y editar del otro lo decide la persona; unir duplicados mueve lo pendiente a la obra que queda | Owner; revierte "nunca borra" de ADR-0005; [X5] del servidor |
+| 2026-09-14 | La llave de un teléfono vence: pasado un mes hay que volver a escanear el QR, y podría pedirse más seguido | Owner, que revisó ese mismo día un "no vence" anterior; [X4] del servidor |
 
 ## Abierto
 
 PIN o biometría propios, además de la pantalla de bloqueo.
 
-Y tres decisiones que dejó [A5.1], con su recomendación en
-`docs/analisis/matriz-de-sincronizacion-2026-09-14.md`:
-1. cómo ve la persona un conflicto;
-2. la redacción del invariante 3 sobre la base, que leída al pie de la letra pierde datos;
-3. si borrar una obra en un lado la borra en el otro al sincronizar. El owner se inclina por
-   que sí, lo que revierte "la sincronización nunca borra" de ADR-0005.
+Y dos preguntas que dejó [A5.1] (`docs/analisis/matriz-de-sincronizacion-2026-09-14.md`):
+1. cómo se resuelve un conflicto de review o de "visto", ahora que el de puntaje se resuelve
+   solo;
+2. si el mes de la llave se cuenta desde la última vez que el teléfono la renovó, como hoy, o
+   desde que se apareó, aunque se use.
