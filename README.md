@@ -9,6 +9,11 @@ de prueba. Lo que viene está en [`tareas.md`](tareas.md) y el orden, en
 
 ## Qué va a ser
 
+**Norte actualizado, 2026-10-04:** capturar recomendaciones y consultar obras,
+directores y actores en el día a día, con capacidades coherentes con la web y
+sincronización confiable. Especificación y preguntas abiertas:
+[`daily-discovery-v1.md`](docs/briefs/daily-discovery-v1.md). Método de entrega: `SDD.md`.
+
 Una aplicación que **funciona sola** y se **sincroniza con tu instancia** de Movie Inbox
 cuando vos lo pedís:
 

@@ -19,6 +19,15 @@ número de allá, como [X1.1].
 
 ## Resumen operativo
 
+**Objetivo del owner, 2026-10-04:** Android es el próximo gran frente: capturar
+recomendaciones de redes/conversaciones y buscar obras, directores y actores con
+paridad de capacidades con la web. Descubrimiento SDD en
+[`docs/briefs/daily-discovery-v1.md`](docs/briefs/daily-discovery-v1.md); no supone
+funciones ya construidas. Primero alinear contrato y probar sincronización A5.2/A5.3.
+X1–X10 ya están en master del servidor; X11 está hecho en su release 0.11.0 y es
+requisito de M2. La pantalla del QR sigue pendiente. Esta nota prevalece sobre las
+dependencias históricas que aún dicen «si la matriz confirma».
+
 | Orden | Tarea | Resultado esperado | Depende de |
 | --- | --- | --- | --- |
 | 1 | [A5] | Probar la sincronización y la fusión en cada caso de una misma cuenta usada por separado, antes de construir pantallas | — |

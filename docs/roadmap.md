@@ -5,6 +5,12 @@ orden, el porqué y las decisiones que no conviene reabrir sin querer.
 
 ## El norte
 
+**Ampliación acordada, 2026-10-04:** además de la réplica y el sync, el objetivo
+cotidiano es capturar recomendaciones de redes/conversaciones y consultar obras,
+directores y actores con capacidades a la par de la web. Alcance por especificar
+en [`daily-discovery-v1.md`](briefs/daily-discovery-v1.md). Los hitos de abajo
+siguen siendo la base técnica; no cubren todavía toda esa experiencia.
+
 Una aplicación que **funciona sola** y **se conecta cuando vos querés**:
 
 - Se aparea **una vez** con una cuenta que ya existe en tu instancia de Movie Inbox,

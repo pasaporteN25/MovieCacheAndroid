@@ -6,6 +6,10 @@ El servidor es otro repositorio, al lado: `../tengo-una-lista-de-peliculas-en`.
 Antes de trabajar, leé `tareas.md`, `docs/roadmap.md` y el plan vigente,
 `docs/briefs/android-client-v3.md`. No son documentación decorativa.
 
+También leé `SDD.md` y `docs/briefs/daily-discovery-v1.md`: registran el objetivo
+actual de descubrimiento cotidiano, captura de recomendaciones y paridad con la web,
+con sus preguntas abiertas. No confundir ese objetivo con capacidades implementadas.
+
 ## Comandos
 
 ```powershell
