@@ -53,3 +53,14 @@ Si una tarea parece exigir romper alguna, parar y preguntar en vez de decidir so
 el tablero del servidor y acá se cita con su número de allá.
 
 El cliente lo escribe Claude, por decisión del owner del 2026-09-07.
+
+## UI Android — decisión del owner, 2026-10-04
+
+Compose es la primera opción, manteniendo MVVM: ViewModel, estado inmutable con
+StateFlow y acciones desde una UI que no contiene lógica de red/persistencia.
+Compose no exige otro patrón. En Views/XML usar View Binding, nunca Kotlin
+synthetics ni acceso manual por findViewById. WebView es una opción acotada cuando
+una integración lo justifique, no la arquitectura de pairing/sync/offline.
+Roadmap ejecutable y gates: `docs/briefs/mobile-pairing-v1.md`.
+La asignación histórica exclusiva a Claude no bloquea el trabajo que el owner
+encarga ahora a Codex; conservar los invariantes y el trabajo de ambos.

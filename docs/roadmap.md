@@ -26,15 +26,29 @@ Una aplicación que **funciona sola** y **se conecta cuando vos querés**:
 "Independiente" no quiere decir "sin acuerdo con el servidor": cuando sincronizan, los dos
 tienen que hablar el mismo idioma. Ese idioma es el contrato copiado en `contract/`.
 
+## Próxima entrega: emparejamiento
+
+Plan ejecutable: [`mobile-pairing-v1.md`](briefs/mobile-pairing-v1.md).
+P0 contrato/entorno → P1 sync mínimo probado → P2 QR/dispositivos web →
+P3 pairing nativo → P4 catálogo offline → P5 edición/sync → P6 captura.
+Primera prueba física en la misma Wi-Fi; acceso remoto después, por decisión
+del owner del 2026-10-04. P2 se puede preparar mientras se prueba P1. No hace falta dump privado ni
+un dispositivo para las reglas Kotlin y el arnés de servidor de P1.
+Compose + MVVM; si hay Views/XML, View Binding. WebView queda como opción
+acotada para contenido web que lo requiera, sin reemplazar la réplica nativa.
+
+Verificado el 2026-10-04: `assembleDebug --offline` exitoso; no había dispositivo
+conectado. La app sigue mostrando sólo el placeholder.
+
 ## Hitos
 
 | Hito | Qué podés hacer con el teléfono | Tareas | Del lado del servidor |
 | --- | --- | --- | --- |
 | **M0 — Entorno** | Compilar el proyecto | [A2.0], cerrada 2026-09-13 | — |
 | **M1 — Sincronización probada** | Todavía nada en la mano: saber que la fusión es correcta en cada caso antes de construir pantallas | [A5] | [X2], que la matriz confirmó; [X4], sesiones que no se pierden por un corte; [X5], bajas que viajan |
-| **M2 — Aparear y leer** | Aparear por QR y ver tu catálogo sin conexión | [A2.1], [A3.1] | Hecho, salvo la pantalla del QR y los vectores del pin ([X1.1]) |
+| **M2 — Aparear y leer** | Aparear por QR y ver tu catálogo sin conexión | [A2.1], [A3.1] | Endpoints y vectores del pin hechos; falta pantalla QR/dispositivos y cliente Android |
 | **M3 — Editar** | Marcar vistas, puntuar y escribir reviews sin red; resolver conflictos | [A2.2] | Lo que salga de [A5] |
-| **M4 — Alta sin conexión** | Guardar películas en cualquier lado | [A2.3], [A3.2] | Hecho, salvo los vectores de normalización ([X1.2]) |
+| **M4 — Alta sin conexión** | Guardar películas en cualquier lado | [A2.3], [A3.2] | Endpoint y vectores de normalización hechos; falta cliente Android |
 | **M5 — Charadas** | Jugar con el mismo mazo en varios teléfonos, sin red | [A2.4], [A3.3] | Hecho |
 | **M6 — Imágenes** | Miniaturas locales y portada en segundo plano | [A2.5] | — |
 | **M7 — Lo que viaja** | Colecciones seguidas, disponibilidad y puntajes | [A2.6] | Hecho |

@@ -45,6 +45,14 @@ versiones distintos para dos cosas que sólo se hablan por HTTP.
   commit del servidor del que salió. Por qué una copia y no una referencia, en
   [`contract/README.md`](contract/README.md).
 
+## Primera entrega mobile
+
+Roadmap de emparejamiento y QA: [`mobile-pairing-v1.md`](docs/briefs/mobile-pairing-v1.md).
+Compose + MVVM; View Binding cuando una integración necesita XML/Views.
+Verificado el 2026-10-04: build debug exitoso. La app sigue siendo un placeholder;
+no implementa todavía pairing ni sync. Reglas y arnés se prueban con datos
+sintéticos antes del recorrido QR → réplica local → consulta offline.
+
 ## Compilar
 
 Requiere Android Studio, que trae el JDK y el SDK. Para abrirlo: *File → Open* y elegir esta

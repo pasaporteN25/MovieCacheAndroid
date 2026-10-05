@@ -19,6 +19,15 @@ número de allá, como [X1.1].
 
 ## Resumen operativo
 
+**Preparación de emparejamiento, 2026-10-04:** plan de entrega y gates en
+[`mobile-pairing-v1.md`](docs/briefs/mobile-pairing-v1.md). Primero P0 y el primer
+caso Kotlin/servidor real de P1 (A5.2/A5.3); después pairing y réplica offline.
+Compose + MVVM, View Binding si se necesita XML. Dump y dispositivo se usan en
+QA manual aislado; no bloquean el arnés con datos sintéticos. Build debug
+verificado hoy, app aún placeholder y ningún dispositivo conectado.
+X1.1/X1.2 del servidor ya están cerrados: actualizar las copias de sus vectores
+en P0. Las dependencias históricas de abajo no implican que sigan pendientes.
+
 **Objetivo del owner, 2026-10-04:** Android es el próximo gran frente: capturar
 recomendaciones de redes/conversaciones y buscar obras, directores y actores con
 paridad de capacidades con la web. Descubrimiento SDD en
