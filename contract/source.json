@@ -1,0 +1,22 @@
+{
+  "server_commit": "72954fef61eeeb5f2bd4a7d1dbb9fb3ac5243ba6",
+  "date": "2026-10-05",
+  "files": {
+    "device-api-v1.openapi.json": {
+      "source": "docs/openapi/device-api-v1.openapi.json",
+      "sha256": "fe2e31fb8585a29819865cafd1c5a9496d070e8b1e1ed9084220e6a125fdb492"
+    },
+    "charades-v1-vectors.json": {
+      "source": "docs/briefs/charades-v1-vectors.json",
+      "sha256": "8cf2f4fb9e740cce942fbd5d47fcc1492a851343b4711be4c284e8f3ccedab19"
+    },
+    "pairing-certificate-v1-vectors.json": {
+      "source": "docs/briefs/pairing-certificate-v1-vectors.json",
+      "sha256": "7ac3132b4f6dd84e2d55fd69d62c39d449ca2964be7df93d54a13e58d9ffc392"
+    },
+    "title-normalization-v1-vectors.json": {
+      "source": "docs/briefs/title-normalization-v1-vectors.json",
+      "sha256": "1836ebfb06c6f85e8a57c69aaa21db9be70ca811cfcb91616f47e6e633e33ea7"
+    }
+  }
+}
