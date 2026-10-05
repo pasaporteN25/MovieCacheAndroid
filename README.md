@@ -55,6 +55,10 @@ sintéticos antes del recorrido QR → réplica local → consulta offline.
 
 ## Compilar
 
+AGP queda fijado en **9.1.1**, compatible con el Android Studio instalado del owner
+(decisión 2026-10-04). No subirlo sólo porque la terminal permite compilar: también
+debe admitirlo el IDE. Las versiones viven en `gradle/libs.versions.toml`.
+
 Requiere Android Studio, que trae el JDK y el SDK. Para abrirlo: *File → Open* y elegir esta
 carpeta.
 
